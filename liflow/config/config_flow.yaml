@@ -1,0 +1,40 @@
+experiment:
+    id: liflow
+
+data:
+    target: liflow.datasets.datasets.SemanticKittiDataModule
+    params:
+        data_dir: ./Datasets/SemanticKITTI
+        seqs:
+            train: [ '00', '01', '02', '03', '04', '05', '06', '07', '09', '10' ]
+            validation: [ '08' ]
+            test: ['11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21']
+        num_points: 180000
+        max_range: 50.
+        batch_size: 4
+        num_workers: 4
+
+model:
+    target: liflow.models.flow.FlowModel
+    params:
+        sigma_min: 0.0
+        uncond_prob: 0.1
+        uncond_w: 6
+        resolution: 0.05
+        lr: 0.0001
+        model_cfg:
+            target: liflow.models.minkunet.MinkUNetDiffIN
+            params:
+                    in_channels: 3
+        partial_enc_cfg:
+            target: liflow.models.minkunet.MinkGlobalEncIN
+            params:
+                    in_channels: 3
+                    out_channels: 96
+
+train:
+    n_gpus: 1
+    max_epoch: 20
+    decay_lr: 1.0e-4
+    use_ema: True
+

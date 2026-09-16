@@ -1,0 +1,12 @@
+#pytorch3d==0.7.1
+ninja==1.10.2.3
+click==8.1.4
+pytorch_lightning==2.1.1
+six==1.16.0
+open3d==0.17.0
+hdbscan==0.8.40
+natsort==8.1.0
+pykeops==2.2.3
+tensorboard==2.15.0
+flow_matching
+numpy==1.26.4
